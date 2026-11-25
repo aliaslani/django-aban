@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page_title|default:app_name }}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <header>
+        <nav><a href="{% url 'product-list' %}">{{ app_name }}</a>{% if user.is_staff %}<a
+                href="{% url 'product-create' %}">Create</a><a href="{% url 'product-inactive' %}">Inactive</a><a
+                href="{% url 'admin:index' %}">Admin</a>{% endif %}{% if user.is_authenticated %}<form method="post"
+                action="{% url 'logout' %}">{% csrf_token %}<button>Log out</button></form>{% else %}<a
+                href="{% url 'login' %}">Log in</a>{% endif %}</nav>
+    </header>
+    <main>{% for message in messages %}<p role="status">{{ message }}</p>{% endfor %}<h1>{{ page_title|default:app_name
+            }}</h1>{% block content %}{% endblock %}</main>
+    <footer>Session 01 · Request {{ request_id }}</footer>
+</body>
+
+</html>

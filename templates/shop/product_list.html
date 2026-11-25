@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block content %}<section class="grid">{% for product in products %}<article>
+        <h2>{% if product.is_active %}<a href="{% url 'product-detail' product.pk %}">{{ product.name }}</a>{% else %}{{ product.name }}{% endif %}</h2>
+        <p>${{ product.price }} · Stock {{ product.stock }}</p>{% if perms.shop.change_product and user.is_staff %}<a href="{% url 'product-update' product.pk %}">Edit</a>{% endif %}
+    </article>{% empty %}<p>No products.</p>{% endfor %}</section>{% if is_paginated %}<p>{% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">Previous</a>{% endif %} Page {{ page_obj.number }} of {{ paginator.num_pages }} {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">Next</a>{% endif %}
+</p>{% endif %}{% endblock %}
