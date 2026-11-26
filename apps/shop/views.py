@@ -1,7 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
+from django.db import models
+from django.db.models import QuerySet
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, DetailView, FormView, ListView, UpdateView
 
 from apps.core.exceptions import DomainError
@@ -11,7 +13,25 @@ from .forms import PricingForm, ProductForm, ProductUpdateForm
 from .models import Product
 from .repositories import DjangoProductRepository
 from .services import CartLine, PricingService, ProductService
+from django.views import View
+# def product_list(request):
+#     products = Prouct.object.all()
+#     return render(request, 'product_list.html', {'products':products})
 
+# class ProductCountView(View)
+#     def get(self):
+#         asdkfjaldsf
+#
+#     def post(self):
+#         skasdjflaksjdf
+# # class ProductListView(ListView):
+# #     model = Product
+# #     template_name = 'shop/product_list.html'
+# #     context_object_name = 'products'
+# #
+# #     def get_queryset(self) -> QuerySet[_M]:
+# #         return Product.objects.active()
+# #
 
 class ProductBaseListView(PageTitleMixin, ListView):
     model = Product
@@ -44,6 +64,7 @@ class ProductDetailView(PageTitleMixin, DetailView):
 
     def get_queryset(self):
         return Product.objects.active()
+
 
 
 class ProductCreateView(

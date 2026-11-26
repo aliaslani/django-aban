@@ -8,7 +8,7 @@ from apps.shop.services import PricingService
 
 class FakeRepository:
     def get_many(self, ids):
-        return {1: ProductDTO(1, "Laptop", Decimal("1200.00"), 10)} if 1 in ids else {}
+        return {1: ProductDTO(1, "Laptop", Decimal("1200.00"), 10), 1: ProductDTO(2, "Camera", Decimal("1100.00"), 1)} if 1 in ids else {}
 
 
 class PricingTests(TestCase):

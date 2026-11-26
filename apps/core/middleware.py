@@ -5,6 +5,17 @@ from uuid import uuid4
 logger = logging.getLogger("bazaarche.requests")
 
 
+# class ExampleMiddleware:
+#     def __init__(self, get_response):
+#         self.get_response = get_response
+#
+#     def __call__(self, request):
+#         response = self.get_response(request)
+#
+#         return response
+
+
+
 class RequestIDMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response

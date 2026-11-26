@@ -13,3 +13,16 @@ class DjangoProductRepository:
 
     def list_active(self):
         return Product.objects.active()
+
+
+class InMemoryProductRepository:
+    def __init__(self,products):
+        self.products = {
+            product.id: product for product in products
+        }
+
+    def get_many(self, ids):
+        return {
+            product_id: self.products[product_id] for product_id in ids
+            if product_id in self.products
+        }

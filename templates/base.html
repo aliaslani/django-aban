@@ -17,8 +17,7 @@
                 action="{% url 'logout' %}">{% csrf_token %}<button>Log out</button></form>{% else %}<a
                 href="{% url 'login' %}">Log in</a>{% endif %}</nav>
     </header>
-    <main>{% for message in messages %}<p role="status">{{ message }}</p>{% endfor %}<h1>{{ page_title|default:app_name
-            }}</h1>{% block content %}{% endblock %}</main>
+    <main>{% for message in messages %}<p role="status">{{ message }}</p>{% endfor %}<h1>{{ page_title|default:app_name }}</h1>{% block content %}{% endblock %}</main>
     <footer>Session 01 · Request {{ request_id }}</footer>
 </body>
 
